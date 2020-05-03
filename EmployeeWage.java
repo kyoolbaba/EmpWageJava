@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class EmployeeWage{
 	final int IS_PART_TIME=1;
 	final int IS_FULL_TIME=2;
@@ -9,14 +11,20 @@ public class EmployeeWage{
 	int empHrs=0;
 	int empWage=0;
 	int totalWage=0;
+	ArrayList<Integer> storeDailyWage;
+	int dayCount=0;
+	ArrayList<Integer> storeTotalWage;
 public static void main(String[] args){
 	//CONSTANTS
+	
 	EmployeeWage employeeWage=new EmployeeWage();
 	System.out.println(employeeWage.computeTotalWorkingHoursWage());
 	
 }
 
 public  int computeTotalWorkingHoursWage(){
+	storeDailyWage=new ArrayList<Integer>();
+	storeTotalWage= new ArrayList<Integer>();
 	//computations
 	for(int day=0;day<NO_OF_DAYS;day++){
 		int empCheck=(int)Math.floor(Math.random()*10%3);
@@ -33,12 +41,17 @@ public  int computeTotalWorkingHoursWage(){
 	totalHoursWorked+=empHrs;
 	empWage=empHrs*EMP_RATE_PER_HOUR;
 	totalWage+=empWage;
-	//System.out.println("The Employee Wage is "+empWage);
-	//System.out.println("The Total Wage is "+totalWage);
-	//System.out.println("The total Working Hours "+totalHoursWorked);
-	//System.out.println("The total Working Hours "+totalHoursWorked);
+	storeDailyWage.add(empWage);
+	storeTotalWage.add(totalWage);
 	}
+for (int x:storeDailyWage) {
+		System.out.println(x);
+	}
+for (int x:storeTotalWage) {
+	System.out.println(x);
+}
 	return totalHoursWorked;
+	
 }
 	
 }
