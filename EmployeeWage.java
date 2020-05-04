@@ -1,57 +1,65 @@
-import java.util.ArrayList;
-
 public class EmployeeWage{
+	//CONSTANTS
 	final int IS_PART_TIME=1;
 	final int IS_FULL_TIME=2;
-	int EMP_RATE_PER_HOUR=20;
-	int NO_OF_DAYS=20;
-	int TOTAL_WORKING_HOURS=100;
-	//variables
-	int totalHoursWorked=0;
-	int empHrs=0;
-	int empWage=0;
-	int totalWage=0;
-	ArrayList<Integer> storeDailyWage;
-	int dayCount=0;
-	ArrayList<Integer> storeTotalWage;
+	//Variables
+	private int empWage=0;
+	private final String company;
+	private final int empRatePerHour;
+	private final int noOfDays;
+	private final int totalWorkingHours;
+	int totalHours=0,totalDays =0;
+
+	
+public String toString() {
+	return "The Wage of "+company+" Employee for WagePerHour "+empRatePerHour+
+			" for "+totalDays+" days and for "+totalHours+"hours is "+empWage;
+}
+	
 public static void main(String[] args){
-	//CONSTANTS
+
+	EmployeeWage employeeWage1=new EmployeeWage("relaince",20,20,100);
+	employeeWage1.computeEmployeeWage();
+	System.out.println(employeeWage1);
+	EmployeeWage employeeWage2=new EmployeeWage("TATA",30,25,150);
+	employeeWage2.computeEmployeeWage();
+	System.out.println(employeeWage2);
 	
-	EmployeeWage employeeWage=new EmployeeWage();
-	System.out.println(employeeWage.computeTotalWorkingHoursWage());
-	
+}
+public EmployeeWage(String company, int empRatePerHour, int noOfDays, int totalWorkingHours) {
+	super();
+	this.company = company;
+	this.empRatePerHour = empRatePerHour;
+	this.noOfDays = noOfDays;
+	this.totalWorkingHours = totalWorkingHours;
 }
 
-public  int computeTotalWorkingHoursWage(){
-	storeDailyWage=new ArrayList<Integer>();
-	storeTotalWage= new ArrayList<Integer>();
-	//computations
-	for(int day=0;day<NO_OF_DAYS;day++){
-		int empCheck=(int)Math.floor(Math.random()*10%3);
-		switch (empCheck){
+public int getEmployeeWorkingHours(){
+	int empHrs=(int)Math.floor(Math.random()*10%3);
+		switch (empHrs){
 			case IS_PART_TIME:
-			empHrs=4;
-			break;
-		case IS_FULL_TIME:
-			empHrs=8;
-			break;
-		default:
-			empHrs=0;
+				empHrs=4;
+				break;
+			case IS_FULL_TIME:
+				empHrs=8;
+				break;
+			default:
+				empHrs=0;
 		}
-	totalHoursWorked+=empHrs;
-	empWage=empHrs*EMP_RATE_PER_HOUR;
-	totalWage+=empWage;
-	storeDailyWage.add(empWage);
-	storeTotalWage.add(totalWage);
+	return empHrs;
+}
+
+
+public  int computeEmployeeWage(){
+	while( totalDays < noOfDays && totalHours < totalWorkingHours ){
+		int empHrs=this.getEmployeeWorkingHours();
+		int dayWage=empHrs*empRatePerHour;
+		empWage+=dayWage;
+		totalHours+=empHrs;
+		totalDays++;
 	}
-for (int x:storeDailyWage) {
-		System.out.println(x);
-	}
-for (int x:storeTotalWage) {
-	System.out.println(x);
-}
-	return totalHoursWorked;
-	
+	return empWage;
+}	
+
 }
 	
-}
