@@ -74,7 +74,7 @@ public  void computeEmployeeWage(int noOfDays,int totalWorkingHours,int empRateP
 	}
 }	
 
-public EmployeeWage sendValues() {
-	return new EmployeeWage(company, empWage, empRatePerHour, totalDays, totalHours);
+public CompanyEmployeeWage sendValues() {
+	return new CompanyEmployeeWage(company, empWage, empRatePerHour, totalDays, totalHours);
 }
 }
