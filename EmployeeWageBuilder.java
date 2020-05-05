@@ -12,7 +12,6 @@ public class EmployeeWageBuilder {
 	private final int totalWorkingHours;
 	int totalHours=0,totalDays =0;
 	private static ArrayList<EmployeeWageBuilder> employeeWageList= new ArrayList<EmployeeWageBuilder>();
-
 	
 public EmployeeWageBuilder(String company, int empRatePerHour, int noOfDays, int totalWorkingHours) {
 		super();
@@ -25,7 +24,6 @@ public EmployeeWageBuilder(String company, int empRatePerHour, int noOfDays, int
 		employeeWageList.add(this);
 	}
 
-
 public static void main(String[] args){
 	EmployeeWageBuilder reliance=new EmployeeWageBuilder("relaince",20,20,100);
 	EmployeeWageBuilder tata=new EmployeeWageBuilder("TATA",30,25,150);
@@ -34,12 +32,10 @@ public static void main(String[] args){
 	returnEmployeeWage("TATA");
 }
 
-
 @Override
 public String toString() {
 	return "EmployeeWageBuilder [empWage=" + empWage + ", company=" + company + "]";
 }
-
 
 public int getEmployeeWorkingHours(){
 	int empHrs=(int)Math.floor(Math.random()*10%3);
@@ -55,6 +51,7 @@ public int getEmployeeWorkingHours(){
 		}
 	return empHrs;
 }
+
 public static void returnEmployeeWage() {
 	for (EmployeeWageBuilder s:employeeWageList) {
 		System.out.println(s);
@@ -70,7 +67,6 @@ public static void returnEmployeeWage(String company) {
 	}
 }
 
-
 public  int computeEmployeeWage(){
 	while( totalDays < noOfDays && totalHours < totalWorkingHours ){
 		int empHrs=this.getEmployeeWorkingHours();
@@ -81,6 +77,7 @@ public  int computeEmployeeWage(){
 	}
 	return empWage;
 }	
+
 public EmployeeWage sendValues() {
 	return new EmployeeWage(company, empWage, empRatePerHour, totalDays, totalHours);
 }
