@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class EmployeeWageBuilder {
 	//CONSTANTS
@@ -10,6 +11,7 @@ public class EmployeeWageBuilder {
 	private final int noOfDays;
 	private final int totalWorkingHours;
 	int totalHours=0,totalDays =0;
+	private static ArrayList<EmployeeWageBuilder> employeeWageList= new ArrayList<EmployeeWageBuilder>();
 
 	
 public EmployeeWageBuilder(String company, int empRatePerHour, int noOfDays, int totalWorkingHours) {
@@ -18,16 +20,24 @@ public EmployeeWageBuilder(String company, int empRatePerHour, int noOfDays, int
 		this.empRatePerHour = empRatePerHour;
 		this.noOfDays = noOfDays;
 		this.totalWorkingHours = totalWorkingHours;
+		this.computeEmployeeWage();
+		this.sendValues();
+		employeeWageList.add(this);
 	}
 
 
 public static void main(String[] args){
 	EmployeeWageBuilder reliance=new EmployeeWageBuilder("relaince",20,20,100);
-	reliance.computeEmployeeWage();
-	reliance.sendValues();
 	EmployeeWageBuilder tata=new EmployeeWageBuilder("TATA",30,25,150);
-	tata.computeEmployeeWage();
-	tata.sendValues();	
+	EmployeeWageBuilder company1=new EmployeeWageBuilder("Company1",30,25,150);
+	returnEmployeeWage();
+	returnEmployeeWage("TATA");
+}
+
+
+@Override
+public String toString() {
+	return "EmployeeWageBuilder [empWage=" + empWage + ", company=" + company + "]";
 }
 
 
@@ -44,6 +54,20 @@ public int getEmployeeWorkingHours(){
 				empHrs=0;
 		}
 	return empHrs;
+}
+public static void returnEmployeeWage() {
+	for (EmployeeWageBuilder s:employeeWageList) {
+		System.out.println(s);
+	}
+}
+
+public static void returnEmployeeWage(String company) {
+	for (EmployeeWageBuilder s:employeeWageList) {
+		if(s.toString().contains(company)) {
+			System.out.println(s);
+			break;
+		}
+	}
 }
 
 

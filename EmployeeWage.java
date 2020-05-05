@@ -17,13 +17,19 @@ public class EmployeeWage{
 		this.empRatePerHour = empRatePerHour;
 		this.totalDays = totalDays;
 		this.totalHours = totalHours;
-		System.out.println(this);
+		//System.out.println(this);
+	}
+
+	@Override
+	public String toString() {
+		return "EmployeeWage [empWage=" + empWage + 
+				", company=" + company + 
+				", empRatePerHour=" + empRatePerHour
+				+ ", totalHours=" + totalHours +
+				", totalDays=" + totalDays + "]";
 	}
 	
-public String toString() {
-	return "The Wage of "+company+" Employee for WagePerHour "+empRatePerHour+
-			" for "+totalDays+" days and for "+totalHours+"hours is "+empWage;
-}
+
 	
 
 
